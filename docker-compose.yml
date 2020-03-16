@@ -10,7 +10,7 @@ volumes:
 
 services:
   unifi:
-    image: ryansch/unifi-rpi:5-arm32v7
+    image: ryansch/unifi-rpi:5
     ports:
       - "3478:3478/udp"
       - "6789:6789"
