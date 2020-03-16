@@ -1,0 +1,29 @@
+version: '2'
+
+volumes:
+  unifi-config:
+  unifi-log:
+  unifi-log2:
+  unifi-run:
+  unifi-run2:
+  unifi-work:
+
+services:
+  unifi:
+    image: ryansch/unifi-rpi:5-arm32v7
+    ports:
+      - "3478:3478/udp"
+      - "6789:6789"
+      - "8080:8080"
+      - "8081:8081"
+      - "8443:8443"
+      - "8843:8843"
+      - "8880:8880"
+      - "10001:10001/udp"
+    volumes:
+      - unifi-config:/var/lib/unifi
+      - unifi-log:/usr/lib/unifi/logs
+      - unifi-log2:/var/log/unifi
+      - unifi-run:/usr/lib/unifi/run
+      - unifi-run2:/run/unifi
+      - unifi-work:/usr/lib/unifi/work
