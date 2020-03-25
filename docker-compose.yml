@@ -30,17 +30,17 @@ services:
       - unifi-run2:/run/unifi
       - unifi-work:/usr/lib/unifi/work
   pihole:
-    image: pihole/pihole:latest
-    #environment:
+    build: ./pihole
+    privileged: true
+    environment:
     #  WEBPASSWORD: # set in balena
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "80:80/tcp"
-      - "443:443/tcp"
+      TZ: America/Los_Angeles
+      DNSMASQ_LISTENING: eth0
+      INTERFACE: eth0
     volumes:
       - pihole:/etc/pihole
       - dnsmasq:/etc/dnsmasq.d
     dns:
       - 127.0.0.1
       - 1.1.1.1
+    network_mode: host
